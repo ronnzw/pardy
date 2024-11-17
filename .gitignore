@@ -1,0 +1,8 @@
+# virtual env
+pmyvenv/
+.env
+.vscode
+*.pyc
+
+# media
+staticfiles/

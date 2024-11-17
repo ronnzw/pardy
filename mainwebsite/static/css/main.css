@@ -1,0 +1,152 @@
+body {
+    overflow-x: hidden;
+    background-color: black;
+}
+.nav-link {
+    font-weight: 500;
+    position: relative;
+}
+.nav-link:hover, nav-link:active {
+    color: #000;
+}
+@media (min-width: 991px) {
+    .nav-link::before {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        width: 0%;
+        height: 2px;
+        background-color: #344A9F;
+        transform: translateX(-50%);
+        visibility: hidden;
+        transition: 0.3s ease-in-out;
+    }
+    .nav-link:hover::before, .nav-link.active::before {
+        width: 100%;
+        visibility: visible;
+    }
+}
+.navbar-section {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+.navbar-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('../img/redcar.jpg') no-repeat center;
+    background-size: cover;
+    filter: brightness(0.8);
+    z-index: -1;
+}
+.navbar-section p {
+    font-family:monospace;
+    z-index: 1;
+}
+.typing-text {
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 3px solid; /* Cursor effect */
+    width: 0;
+    animation: typing 4s steps(40, end) forwards, blink-caret 0.7s step-end infinite;
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+    .typing-text {
+      font-size: 2.75rem; /* Adjust font size for tablets */
+    }
+  }
+@media (max-width: 768px) {
+    .typing-text {
+      font-size: 1.3rem; /* Adjust font size for mobile */
+    }
+  }
+
+@keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+@keyframes blink-caret {
+    50% { border-color: transparent; }
+}
+.card img {
+    height: 75px;
+    width: 75px;
+}
+.background-image {
+    position: relative;
+    width: 100%;
+    height: 50vh;
+    z-index: 0;
+    overflow: hidden;
+}
+.background-image::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('../img/bmw.jpg') no-repeat center;
+    background-size: cover;
+    background-attachment: fixed;
+    filter: brightness(0.5);
+    z-index: -1;
+}
+.background-image p {
+    position: relative;
+    color: white; /* Or any other color for contrast */
+    z-index: 1;
+}
+.card-container {
+    position: relative;
+    top: -50px; /* Adjust this value to position the card */
+}
+.card {
+    overflow: hidden;
+}
+/* Custom styles for overlay effect */
+.card-overlay {
+    position: relative;
+}
+.card-img {
+    filter: brightness(0.4);
+}
+/* Center and style overlay text */
+.card-overlay-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: center;
+    padding: 15px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 8px;
+}
+.card:hover .card-img {
+    transform: scale(1.05); /* Slight zoom effect */
+    transition: transform 0.3s ease; /* Smooth transition */
+}
+.card-img {
+    transition: transform 0.3s ease; /* Smooth transition when not hovered */
+}
+.services-img {
+    background-image: url('/static/img/greencar.jpg');
+    height: 70vh;
+    width: 100vw;
+    background-size: cover; 
+    background-repeat: no-repeat; 
+    background-position: center center;
+    background-attachment: fixed;
+    z-index: -1;
+}

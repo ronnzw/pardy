@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="navbar-section d-flex justify-content-center align-items-center">
+    <div class="container text-white">
+      <h4 id="dynamic-heading" class="display-3 fw-bold typing-text"></h4>
+      <p class="fw-lighter">A safe and realiable solution to all your car problems. We offer this service from the comfort of your home.</p>
+    </div>
+</section>
+
+<div class="container mt-5 mb-5">
+    <h4 class="display-4 text-white text-center fw-bold">Why should we choose us?</h4>
+</div>
+
+<div class="background-image">
+    <div class="container">
+        <div class="row text-white">
+            <div class="col-md-4 text-center">
+                <p class="display-4 fw-bold">100% Professional Experts</p>
+            </div>
+            <div class="col-md-6 offset-2  align-self-center">
+                <p> Our mobile mechanics bring the garage to you. We're equipped with state-of-the-art tools and diagnostic equipment to ensure top-tier service, no matter where you are. With over 10 years of experience and a commitment to excellence, we deliver professional, reliable, and efficient automotive repairs. Safety is our priority, we setup safe working environments and our equipment is always serviced to ensure top safety standards. </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container card-container">
+    <div class="row justify-content-center">
+        <div class="col-md-4">
+            <div class="card border-light mb-3" style="max-width: 18rem;">
+                <div class="card-header display-1 fw-bolder text-center">01</div>
+                <div class="card-body">
+                  <h5 class="card-title text-center">Fair pricing</h5>
+                  <p class="card-text">You are granteed to the a fair quote with no hidden costs.</p>
+                </div>
+              </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card border-light mb-3" style="max-width: 18rem;">
+                <div class="card-header display-1 fw-bolder text-center">02</div>
+                <div class="card-body">
+                  <h5 class="card-title text-center">Online Book</h5>
+                  <p class="card-text">Your can do an online book with us and we will come to you.</p>
+                </div>
+              </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card border-dark mb-3" style="max-width: 18rem;">
+                <div class="card-header display-1 fw-bolder text-center">03</div>
+                <div class="card-body">
+                  <h5 class="card-title text-center">Experience</h5>
+                  <p class="card-text">We have over 10 years of experience in the industry. We do thinks right, then first time always.</p>
+                </div>
+              </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container mb-5">
+    <h4 class="display-4 text-white text-center fw-bold mb-5">Our Easy Process</h4>
+
+    <div class="row text-center">
+        <div class="col-md-4 d-flex align-items-center">
+            <div class="card text-bg-dark">
+                <img src="{% static 'img/enginelift.jpeg' %}" class="card-img w-100 h-auto" alt="img">
+                <div class="card-img-overlay d-flex flex-column align-items-center justify-content-center text-center">
+                  <h5 class="card-title">Request a Service</h5>
+                  <p class="card-text align-middle">Call or message us to explain your car’s issue, and we’ll quickly assess your needs.</p>
+                </div>
+              </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-bg-dark">
+                <img src="{% static 'img/main.jpeg' %}" class="card-img w-100 h-auto" alt="img">
+                <div class="card-img-overlay d-flex flex-column align-items-center justify-content-center text-center">
+                  <h5 class="card-title">Pay the Call-Out Fee</h5>
+                  <p class="card-text">Once you confirm, pay a small call-out fee to schedule your mechanic’s visit.</p>
+                </div>
+              </div>
+        </div>
+        <div class="col-md-4 d-flex align-items-center">
+            <div class="card text-bg-dark">
+                <img src="{% static 'img/Mounted.jpeg' %}" class="card-img w-100 h-auto" alt="img">
+                <div class="card-img-overlay d-flex flex-column align-items-center justify-content-center text-center">
+                  <h5 class="card-title">Expert On-Site Repair</h5>
+                  <p class="card-text">Our skilled mechanic arrives at your location to diagnose and fix your car on the spot.</p>
+                </div>
+              </div>
+        </div>
+    </div>
+
+
+</div>
+
+
+
+
+<script src="https://static.elfsight.com/platform/platform.js" async></script>
+<div class="elfsight-app-320d2cf2-1fb6-4745-aa45-5a4420192032" data-elfsight-app-lazy></div>
+{% endblock content %}
