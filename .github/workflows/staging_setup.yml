@@ -3,10 +3,10 @@ name: Deploy Django to cPanel
 on:
   workflow_dispatch:
     inputs:
-    environment:
-      description: 'staging'
-      required: true
-      default: 'staging'
+      environment:
+        description: 'staging'
+        required: true
+        default: 'staging'
 
 jobs:
   deploy:
