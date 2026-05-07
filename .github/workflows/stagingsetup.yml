@@ -2,11 +2,6 @@ name: Deploy Django to cPanel
 
 on:
   workflow_dispatch:
-    inputs:
-      environment:
-        description: 'staging'
-        required: true
-        default: 'staging'
 
 jobs:
   deploy:
@@ -40,7 +35,7 @@ jobs:
           script: |
             cd /home/macreoqn/pardystaging
 
-            source /home/macreoqn/virtualenv/pardystaging/3.11/bin/activate
+            source /home/macreoqn/virtualenv/pardystaging/3.10/bin/activate
 
             pip install -r requirements.txt
 
