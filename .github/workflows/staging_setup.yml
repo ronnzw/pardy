@@ -1,0 +1,51 @@
+name: Deploy Django to cPanel
+
+on:
+  workflow_dispatch:
+    inputs:
+    environment:
+      description: 'staging'
+      required: true
+      default: 'staging'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Create .env File
+        run: |
+          echo "PROD_SECRET_KEY=${{ secrets.PROD_SECRET_KEY }}" > .env
+
+      - name: Upload Files to cPanel
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PAASWORD }}
+          port: 22
+          source: "."
+          target: "/home/macreoqn/pardystaging"
+
+      - name: Execute Deployment Commands
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PAASWORD }}
+          port: 22
+          script: |
+            cd /home/macreoqn/pardystaging
+
+            source /home/macreoqn/virtualenv/pardystaging/3.11/bin/activate
+
+            pip install -r requirements.txt
+
+            python manage.py migrate --settings=pardy.settings.prod
+
+            python manage.py collectstatic --noinput --settings=pardy.settings.prod
+
+            touch /home/macreoqn/tmp/restart.txt
