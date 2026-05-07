@@ -25,7 +25,7 @@ jobs:
           target: "/home/macreoqn/pardystaging"
 
       - name: Execute Deployment Commands
-        uses: appleboy/ssh-action@master
+        uses: thaolaptrinh/shared-hosting-deploy@v1
         with:
           host: ${{ secrets.CPANEL_HOST }}
           username: ${{ secrets.CPANEL_USERNAME }}
