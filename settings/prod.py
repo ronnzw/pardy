@@ -9,7 +9,7 @@ load_dotenv()
 SECRET_KEY = os.getenv("PROD_SECRET_KEY")
 DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1','https://pardymobilemechanics.co.za', 'www.pardystaging.macronsynergy.co.zw', 'pardystaging.macronsynergy.co.zw']
+ALLOWED_HOSTS = ['127.0.0.1','https://pardymobilemechanics.co.za', 'www.staging.macronsynergy.co.zw', 'staging.macronsynergy.co.zw']
 
 DATABASES = {
     'default': {
