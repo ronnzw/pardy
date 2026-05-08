@@ -1,0 +1,114 @@
+name: Deploy Django and optimize images to cPanel
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Create .env File
+        run: |
+          echo "PROD_SECRET_KEY=${{ secrets.PROD_SECRET_KEY }}" > .env
+
+      - name: Convert Static Images to WebP
+        run: |
+          pip install Pillow
+          python << 'EOF'
+          import os
+          from PIL import Image
+          from pathlib import Path
+
+          image_extensions = {'.jpg', '.jpeg', '.png'}
+
+          for path in Path('static').rglob('*'):
+              if path.suffix.lower() in image_extensions:
+                  webp_path = path.with_suffix('.webp')
+                  try:
+                      img = Image.open(path)
+                      if img.mode in ('RGBA', 'P'):
+                          img = img.convert('RGB')
+                      img.save(webp_path, 'WEBP', quality=80)
+                      print(f"✓ Converted: {path} → {webp_path}")
+                  except Exception as e:
+                      print(f"✗ Skipped {path}: {e}")
+          EOF
+
+      - name: Update Templates to Use WebP
+        run: |
+          python << 'EOF'
+          import os
+          import re
+          from pathlib import Path
+
+          img_pattern = re.compile(
+              r'<img([^>]*?)src=(["\'])\{%\s*static\s*["\']([^"\']+\.(jpg|jpeg|png))["\']\s*%\}([^>]*?)>',
+              re.IGNORECASE
+          )
+
+          def convert_img_to_picture(match):
+              before_src = match.group(1)
+              quote = match.group(2)
+              image_path = match.group(3)
+              after_src = match.group(5)
+              webp_path = re.sub(r'\.(jpg|jpeg|png)$', '.webp', image_path, flags=re.IGNORECASE)
+
+              alt_match = re.search(r'alt=(["\'])(.*?)\1', before_src + after_src)
+              alt = f'alt="{alt_match.group(2)}"' if alt_match else ''
+
+              class_match = re.search(r'class=(["\'])(.*?)\1', before_src + after_src)
+              cls = f'class="{class_match.group(2)}"' if class_match else ''
+
+              return f'''<picture>
+              <source srcset="{{% static '{webp_path}' %}}" type="image/webp">
+              <img src="{{% static '{image_path}' %}}" {alt} {cls}>
+            </picture>'''
+
+          templates_dirs = ['templates', 'theme']  # update if needed
+          updated_files = 0
+
+          for templates_dir in templates_dirs:
+              if not os.path.exists(templates_dir):
+                  continue
+              for path in Path(templates_dir).rglob('*.html'):
+                  content = path.read_text(encoding='utf-8')
+                  new_content, count = img_pattern.subn(convert_img_to_picture, content)
+                  if count > 0:
+                      path.write_text(new_content, encoding='utf-8')
+                      print(f"✓ Updated {count} image(s) in: {path}")
+                      updated_files += 1
+
+          if updated_files == 0:
+              print("No templates needed updating")
+          else:
+              print(f"\nDone! Updated {updated_files} template file(s)")
+          EOF
+
+      - name: Upload Files to cPanel
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.CPANEL_HOST }}
+          username: ${{ secrets.CPANEL_USERNAME }}
+          password: ${{ secrets.CPANEL_PASSWORD }}
+          port: 21098
+          source: "."
+          target: "/home/macreoqn/pardystaging"
+
+      - name: Execute Deployment Commands
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.CPANEL_HOST }}
+          username: ${{ secrets.CPANEL_USERNAME }}
+          password: ${{ secrets.CPANEL_PASSWORD }}
+          port: 21098
+          script: |
+            cd /home/macreoqn/pardystaging
+            source /home/macreoqn/virtualenv/pardystaging/3.10/bin/activate
+            pip install -r requirements.txt
+            python manage.py migrate --settings=pardy.settings.prod
+            python manage.py collectstatic --noinput --settings=pardy.settings.prod
+            touch /home/macreoqn/tmp/restart.txt
