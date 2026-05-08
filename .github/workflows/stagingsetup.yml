@@ -39,8 +39,8 @@ jobs:
 
             pip install -r requirements.txt
 
-            python manage.py migrate --settings=pardy.settings.prod
+            python manage.py migrate --settings=settings.prod
 
-            python manage.py collectstatic --noinput --settings=pardy.settings.prod
+            python manage.py collectstatic --noinput --settings=settings.prod
 
             touch /home/macreoqn/tmp/restart.txt
