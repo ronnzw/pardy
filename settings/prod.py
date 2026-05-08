@@ -11,7 +11,7 @@ DEBUG = False
 
 SITE_ID = 1
 
-ALLOWED_HOSTS = ['127.0.0.1','https://pardymobilemechanics.co.za', 'www.staging.macronsynergy.co.zw', 'staging.macronsynergy.co.zw']
+ALLOWED_HOSTS = ['www.pardymobilemechanics.co.za','pardymobilemechanics.co.za', 'www.staging.macronsynergy.co.zw', 'staging.macronsynergy.co.zw']
 
 DATABASES = {
     'default': {

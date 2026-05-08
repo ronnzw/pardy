@@ -3,6 +3,7 @@ pmyvenv/
 .env
 .vscode
 *.pyc
+.DS_Store
 
 # media
 staticfiles/
