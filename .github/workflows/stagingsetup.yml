@@ -16,11 +16,11 @@ jobs:
           echo "PROD_SECRET_KEY=${{ secrets.PROD_SECRET_KEY }}" > .env
 
       - name: Upload Files to cPanel
-        uses: SamKirkland/FTP-Deploy-Action@4.0.0
+        uses: appleboy/ssh-action@master
         with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PAASWORD }}
+          server: ${{ secrets.CPANEL_HOST }}
+          username: ${{ secrets.CPANEL_USERNAME }}
+          password: ${{ secrets.CPANEL_PASSWORD }}
           source: "."
           target: "/home/macreoqn/pardystaging"
 
