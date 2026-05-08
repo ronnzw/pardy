@@ -65,7 +65,10 @@
     <div class="row text-center">
         <div class="col-md-4 d-flex align-items-center">
             <div class="card text-bg-dark">
-                <img src="{% static 'img/enginelift.jpeg' %}" class="card-img w-100 h-auto" alt="img">
+                <picture>
+    <source srcset="{% static 'img/enginelift.webp' %}" type="image/webp">
+    <img src="{% static 'img/enginelift.jpeg' %}" alt="img" class="card-img w-100 h-auto">
+</picture>
                 <div class="card-img-overlay d-flex flex-column align-items-center justify-content-center text-center">
                   <h5 class="card-title">Request a Service</h5>
                   <p class="card-text align-middle">Call or message us to explain your car’s issue, and we’ll quickly assess your needs.</p>
@@ -74,7 +77,10 @@
         </div>
         <div class="col-md-4">
             <div class="card text-bg-dark">
-                <img src="{% static 'img/main.jpeg' %}" class="card-img w-100 h-auto" alt="img">
+                <picture>
+    <source srcset="{% static 'img/main.webp' %}" type="image/webp">
+    <img src="{% static 'img/main.jpeg' %}" alt="img" class="card-img w-100 h-auto">
+</picture>
                 <div class="card-img-overlay d-flex flex-column align-items-center justify-content-center text-center">
                   <h5 class="card-title">Pay the Call-Out Fee</h5>
                   <p class="card-text">Once you confirm, pay a small call-out fee to schedule your mechanic’s visit.</p>
@@ -83,7 +89,10 @@
         </div>
         <div class="col-md-4 d-flex align-items-center">
             <div class="card text-bg-dark">
-                <img src="{% static 'img/Mounted.jpeg' %}" class="card-img w-100 h-auto" alt="img">
+                <picture>
+    <source srcset="{% static 'img/Mounted.webp' %}" type="image/webp">
+    <img src="{% static 'img/Mounted.jpeg' %}" alt="img" class="card-img w-100 h-auto">
+</picture>
                 <div class="card-img-overlay d-flex flex-column align-items-center justify-content-center text-center">
                   <h5 class="card-title">Expert On-Site Repair</h5>
                   <p class="card-text">Our skilled mechanic arrives at your location to diagnose and fix your car on the spot.</p>

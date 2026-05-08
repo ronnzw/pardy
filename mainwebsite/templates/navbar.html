@@ -19,7 +19,10 @@
 <nav class="navbar navbar-expand-lg bg-danger-subtle fixed-top m-4 rounded-5 px-3">
     <div class="container-fluid">
       <a class="navbar-brand" href="{% url 'home' %}">
-        <img src="{% static 'img/logoo.png' %}" style="height: 65px; width: 65px" alt="logo">
+        <picture>
+    <source srcset="{% static 'img/logoo.webp' %}" type="image/webp">
+    <img src="{% static 'img/logoo.png' %}" alt="logo" >
+</picture>
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
