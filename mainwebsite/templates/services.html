@@ -1,6 +1,59 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block schema %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "serviceType": "Mobile Car Repair",
+  "provider": {
+    "@type": "AutoRepair",
+    "name": "Pardy Mobile Mechanics",
+    "url": "https://pardymobilemechanics.co.za"
+  },
+  "areaServed": {
+    "@type": "Country",
+    "name": "South Africa"
+  },
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Mobile Mechanic Services",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Mobile Car Servicing"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Roadside Assistance"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Brake Repair"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Engine Diagnostics"
+        }
+      }
+    ]
+  }
+}
+</script>
+{% endblock %}
+
 {% block content %}
 <h1 class="d-none">Services</h1>
 <div class="services-img text-center align-content-center text-white mb-5">

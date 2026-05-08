@@ -1,6 +1,45 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block schema %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "AutoRepair",
+  "name": "Pardy Mobile Mechanics",
+  "url": "https://pardymobilemechanics.co.za",
+  "logo": "https://pardymobilemechanics.co.za/static/img/logoo.webp",
+  "image": "https://pardymobilemechanics.co.za/static/img/logoo.webp",
+  "description": "Professional mobile car repair and servicing across South Africa. We come to you at home, work or roadside.",
+  "telephone": "+27616334597",
+  "priceRange": "$$",
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "ZA",
+    "addressRegion": "South Africa"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "-26.2041",
+    "longitude": "28.0473"
+  },
+  "areaServed": {
+    "@type": "Country",
+    "name": "South Africa"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+27616334597",
+    "contactType": "customer service",
+    "availableLanguage": "English"
+  },
+  "sameAs": [
+    "https://api.whatsapp.com/send/?phone=27616334597"
+  ]
+}
+</script>
+{% endblock %}
+
 {% block content %}
 <section class="navbar-section d-flex justify-content-center align-items-center">
     <div class="container text-white">
