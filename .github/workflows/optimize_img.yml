@@ -68,7 +68,7 @@ jobs:
               <img src="{{% static '{image_path}' %}}" {alt} {cls}>
             </picture>'''
 
-          templates_dirs = ['templates', 'theme']  # update if needed
+          templates_dirs = ['/home/macreoqn/pardystaging/mainwebsite/templates', 'theme']  # update if needed
           updated_files = 0
 
           for templates_dir in templates_dirs:
