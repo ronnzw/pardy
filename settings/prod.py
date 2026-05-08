@@ -17,5 +17,3 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
-ROOT_URLCONF = 'mobilemechanic.urls'
