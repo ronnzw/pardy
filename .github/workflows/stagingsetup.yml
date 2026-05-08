@@ -18,7 +18,7 @@ jobs:
       - name: Upload Files to cPanel
         uses: appleboy/ssh-action@master
         with:
-          server: ${{ secrets.CPANEL_HOST }}
+          host: ${{ secrets.CPANEL_HOST }}
           username: ${{ secrets.CPANEL_USERNAME }}
           password: ${{ secrets.CPANEL_PASSWORD }}
           port: 21098
